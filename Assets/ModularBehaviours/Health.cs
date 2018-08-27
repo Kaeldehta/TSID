@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     /// <summary>
     /// Event that triggers on death of the gameObject.
     /// </summary>
-    public static event Action OnDeath = delegate { };
+    public event Action OnDeath = delegate { };
 
     void Start()
     {

@@ -64,7 +64,6 @@ public class Weapon : MonoBehaviour
         float projSpeedChange = Mathf.Cos(angle * Mathf.Deg2Rad) * currentSpeed;
         
         spawnedProj.GetComponent<Movement>().ChangeSpeedByAmount(projSpeedChange);
-        Debug.Log(spawnedProj.GetComponent<Movement>().Speed);
 
     }
 
