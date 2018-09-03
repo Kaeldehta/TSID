@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 50980730275484106}
   - component: {fileID: 58006162249719658}
   - component: {fileID: 114299544723932100}
+  - component: {fileID: 114635410431898690}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e214fb352d74e4e98b7ef64dc8f4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayTime: 2
+  decayTime: 5
 --- !u!114 &114313467581565424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +213,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2151e33a71814324a9205391e1411ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 1119168079478556, guid: 8fa9bae4bb1fd9540b48148bfa6f4fbe, type: 2}
+  hitParticles: {fileID: 1119168079478556, guid: 8fa9bae4bb1fd9540b48148bfa6f4fbe,
+    type: 2}
+--- !u!114 &114635410431898690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965960410195474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb3fc46a179cab4892ae244afbfe73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114838384420189058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,7 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2ed809ed2b2e1469a508c71ac67e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  baseSpeed: 30
+  speedIncrease: 0
 --- !u!212 &212335692897641322
 SpriteRenderer:
   m_ObjectHideFlags: 1
