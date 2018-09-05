@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         Projectile.GetComponent<Origin>().OriginGameObject = gameObject;
         Projectile.SetActive(false);
     }
-
+    
     void Update()
     {
         if (shootingCountdown <= 0)

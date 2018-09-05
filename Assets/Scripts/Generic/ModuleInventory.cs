@@ -19,11 +19,27 @@ public class ModuleInventory : MonoBehaviour
     {
         for (int i = oldCount; i < moduleInventory.Count; i++)
         {
-            moduleInventory[i].GetComponent<IModule>().AddModuleFunctionality(gameObject);
+            bool isFirst = true;
+            for(int j = 0; j < i; j++)
+            {
+                if(moduleInventory[i].GetComponent<IModule>().GetType() == moduleInventory[j].GetComponent<IModule>().GetType())
+                {
+                    isFirst = false;
+                    break;
+                }
+            }
+            if (isFirst)
+            {
+                moduleInventory[i].GetComponent<IModule>().AddModuleFunctionality(transform.parent.gameObject);
+            }
+            else
+            {
+                moduleInventory[i].GetComponent<IModule>().UpgradeModuleFunctionality(transform.parent.gameObject);
+            }
             oldCount++;
         }
     }
-
+    
     public void AddModuleToInventory(GameObject module)
     {
         moduleInventory.Add(module);

@@ -4,5 +4,17 @@ using UnityEngine;
 
 public class Origin : MonoBehaviour
 {
-    public GameObject OriginGameObject { get; set; }
+    [SerializeField]
+    private GameObject originGameObject;
+    public GameObject OriginGameObject
+    {
+        get
+        {
+            return originGameObject;
+        }
+        set
+        {
+            originGameObject = value;
+        }
+    }
 }

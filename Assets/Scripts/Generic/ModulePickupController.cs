@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ModuleInventory))]
 public class ModulePickupController : MonoBehaviour
 {
 
@@ -10,7 +9,7 @@ public class ModulePickupController : MonoBehaviour
 
     void Start()
     {
-        inventory = GetComponent<ModuleInventory>();
+        inventory = GetComponentInChildren<ModuleInventory>();
     }
     
     void OnCollisionEnter2D(Collision2D col)
@@ -18,7 +17,7 @@ public class ModulePickupController : MonoBehaviour
         if (col.collider.GetComponent<IModule>() != null)
         {
             inventory.AddModuleToInventory(col.gameObject);
-            col.collider.gameObject.transform.parent = gameObject.transform;
+            col.collider.gameObject.transform.parent = inventory.gameObject.transform;
             col.collider.gameObject.SetActive(false);
         }
         

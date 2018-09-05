@@ -5,28 +5,33 @@ using UnityEngine;
 public class UnstableProjectiles : MonoBehaviour
 {
     [SerializeField]
-    private int subProjectileCount = 3;
-
-    private GameObject subProjectile;
+    private int subProjectileCount = 0;
 
     void Start()
-    {   
-        GetComponent<Decay>().OnDecayed += SpawnSubProjectiles;
+    {
+        Decay.OnAnyDecayed += SpawnSubProjectiles;
     }
 
-    void SpawnSubProjectiles()
+    void SpawnSubProjectiles(GameObject projectile)
     {
-        subProjectile = Instantiate(gameObject, transform);
-        Destroy(subProjectile.GetComponent<UnstableProjectiles>());
-
-        for (int i = 0; i < subProjectileCount; i++)
+        if(projectile.GetComponent<Origin>().OriginGameObject == gameObject && !projectile.CompareTag("Sub Projectile"))
         {
-            Vector2 lookDirection = Random.insideUnitCircle;
-            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, lookDirection);
-            var subProj = Instantiate(subProjectile, transform.position, lookRotation);
-            subProj.GetComponent<Origin>().OriginGameObject = GetComponent<Origin>().OriginGameObject;
-            subProj.GetComponent<Decay>().DecayTime = 5;
-            subProj.SetActive(true);
+            
+            for (int i = 0; i < subProjectileCount; i++)
+            {
+                GameObject spawnedSubProjectile = Instantiate(projectile);
+                spawnedSubProjectile.tag = "Sub Projectile";
+                spawnedSubProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, Random.insideUnitCircle);
+                spawnedSubProjectile.name = "Sub Projectile";
+                spawnedSubProjectile.SetActive(true);
+            }
         }
+        
+    }
+
+
+    public void AddSubProjectiles(int count)
+    {
+        subProjectileCount += count;
     }
 }

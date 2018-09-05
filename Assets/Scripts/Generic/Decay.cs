@@ -11,7 +11,7 @@ public class Decay : MonoBehaviour
 
     private float decayCountdown;
 
-    public event Action OnDecayed = delegate { };
+    public static event Action<GameObject> OnAnyDecayed = delegate { };
 
     public float DecayTime
     {
@@ -31,7 +31,7 @@ public class Decay : MonoBehaviour
         if (decayCountdown <= 0)
         {
             gameObject.SetActive(false);
-            OnDecayed();
+            OnAnyDecayed(gameObject);
             Destroy(gameObject, 5);
         }
         decayCountdown -= Time.deltaTime;
