@@ -6,21 +6,16 @@ using UnityEngine;
 public class PlayerWeaponController : MonoBehaviour
 {
     Weapon weapon;
+    PlayerMovementController playerMovement;
 
     void Start()
     {
         weapon = GetComponent<Weapon>();
+        playerMovement = GetComponent<PlayerMovementController>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            weapon.ToggleShooting();
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            weapon.ToggleShooting();
-        }
+        weapon.IsShooting = Input.GetButton("Fire1") && !playerMovement.TravelMode;
     }
 }

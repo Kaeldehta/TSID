@@ -20,8 +20,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     private Vector2 spawnOffset;
-    
-    bool isShooting = false;
+
+    public bool IsShooting { get; set; } = false;
 
     float shootingCountdown;
 
@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
     {
         if (shootingCountdown <= 0)
         {
-            if (isShooting)
+            if (IsShooting)
             {
                 Shoot();
             }
@@ -81,6 +81,6 @@ public class Weapon : MonoBehaviour
 
     public void ToggleShooting()
     {
-        isShooting = !isShooting;
+        IsShooting = !IsShooting;
     }
 }

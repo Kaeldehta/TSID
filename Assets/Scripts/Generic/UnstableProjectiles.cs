@@ -26,6 +26,7 @@ public class UnstableProjectiles : MonoBehaviour
                 up = Vector3.RotateTowards(up, projectile.transform.right, newAngle * Mathf.Deg2Rad, 0);
                 //Debug.DrawRay(projectile.transform.position, up * 5, Color.red, 1);
                 spawnedSubProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, up);
+                spawnedSubProjectile.transform.localScale *= 0.7f;
                 spawnedSubProjectile.GetComponent<Decay>().DecayRange = 50f;
                 spawnedSubProjectile.GetComponent<Movement>().AddSpeedIncrease(1);
                 spawnedSubProjectile.name = "Sub Projectile";

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Movement))]
-public class Boost : MonoBehaviour
+public class PlayerBoostController : MonoBehaviour
 {
 
     Movement movement;
+
+    PlayerMovementController playerMovement;
 
     [SerializeField]
     private float boostSpeed = 1f;
@@ -23,23 +25,26 @@ public class Boost : MonoBehaviour
     void Start()
     {
         movement = GetComponent<Movement>();
+        playerMovement = GetComponent<PlayerMovementController>();
         speedChangeAccel = 0;
         speedChangeDeccel = boostAmount;
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space) && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
+        
+        if (Input.GetKeyDown(KeyCode.Space) && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) && playerMovement.TravelMode)
         {
             accel = true;
             deccel = false;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        
+        if (Input.GetKeyUp(KeyCode.Space) || !playerMovement.TravelMode)
         {
             accel = false;
             deccel = true;
         }
+
         if (accel && !deccel)
         {
             float change = Time.deltaTime * boostSpeed;
