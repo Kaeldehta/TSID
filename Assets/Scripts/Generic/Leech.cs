@@ -16,9 +16,10 @@ public class Leech : MonoBehaviour
 
     void LeechLife(GameObject source, GameObject target, float damageDone)
     {
-        if(source.GetComponent<Origin>().OriginGameObject == gameObject && health.gameObject.CompareTag("Entity"))
+        if(source.GetComponent<Origin>().OriginGameObject == gameObject && target.CompareTag("Entity"))
         {
             float leechedLife = damageDone * leechPercentage;
+            Debug.Log(leechedLife);
             health.ChangeHealthByAmount(leechedLife);
         }
     }

@@ -6,9 +6,10 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float baseSpeed = 10f;
-
     [SerializeField]
     private float speedIncrease = 0f;
+    [SerializeField]
+    private float speedMultiplier = 1f;
 
     public Vector3 MoveDirection { get; set; }
 
@@ -16,7 +17,7 @@ public class Movement : MonoBehaviour
     {
         get
         {
-            return baseSpeed + baseSpeed * speedIncrease;
+            return (baseSpeed + baseSpeed * speedIncrease) * speedMultiplier;
         }
     }
 
@@ -37,7 +38,7 @@ public class Movement : MonoBehaviour
     {
         transform.position += MoveDirection * Time.deltaTime * MaxSpeed;
     }
-    
+
     public void AddFlatSpeed(float amount)
     {
         baseSpeed += amount;
@@ -47,5 +48,10 @@ public class Movement : MonoBehaviour
     {
         speedIncrease += increase;
     }
+    public void MultiplySpeed(float multiplier)
+    {
+        speedMultiplier *= multiplier;
+    }
+
 
 }

@@ -5,35 +5,36 @@ using UnityEngine;
 
 public class Decay : MonoBehaviour
 {
-
+    
     [SerializeField]
-    private float decayTime = 5f;
+    private float decayRange = 50f;
 
     private float decayCountdown;
 
     public static event Action<GameObject> OnAnyDecayed = delegate { };
 
-    public float DecayTime
+    public float DecayRange
     {
         set
         {
-            decayTime = value;
+            decayRange = value;
         }
     }
 
+    Vector3 startPos;
+
     void Start()
     {
-        decayCountdown = decayTime;
+        startPos = transform.position;
     }
 
     void Update()
     {
-        if (decayCountdown <= 0)
+        if ((transform.position - startPos).magnitude > decayRange)
         {
             gameObject.SetActive(false);
             OnAnyDecayed(gameObject);
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 1);
         }
-        decayCountdown -= Time.deltaTime;
     }
 }

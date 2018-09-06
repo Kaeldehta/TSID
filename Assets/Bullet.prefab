@@ -42,7 +42,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1965960410195474
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e214fb352d74e4e98b7ef64dc8f4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayTime: 5
+  decayRange: 50
 --- !u!114 &114313467581565424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb3fc46a179cab4892ae244afbfe73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originGameObject: {fileID: 0}
 --- !u!114 &114838384420189058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,7 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1d77844cc46ee47847f72835e97b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  baseDamage: 5
+  damageIncrease: 0
+  damageMultiplier: 1
 --- !u!114 &114953580337823704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 30
   speedIncrease: 0
+  speedMultiplier: 1
 --- !u!212 &212335692897641322
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -266,7 +270,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: cd67c5844a43f734abdba4061a0c7cce, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

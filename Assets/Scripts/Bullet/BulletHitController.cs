@@ -12,10 +12,12 @@ public class BulletHitController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        gameObject.SetActive(false);
         GameObject hitObject = col.gameObject;
+        
         if (GetComponent<Origin>().OriginGameObject != hitObject)
         {
+
+            gameObject.SetActive(false);
             Vector3 hitPoint = col.GetContact(0).point;
             GameObject particle = Instantiate(hitParticles, hitPoint - Vector3.forward, Quaternion.identity);
 
@@ -35,7 +37,7 @@ public class BulletHitController : MonoBehaviour
 
             }
 
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 1);
         }
 
     }

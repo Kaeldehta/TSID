@@ -10,12 +10,14 @@ public class Health : MonoBehaviour
     private float baseHealth = 100f;
     [SerializeField]
     private float healthIncrease = 0f;
+    [SerializeField]
+    private float healthMultiplier = 1f;
 
     public float MaxHealth
     {
         get
         {
-            return baseHealth + baseHealth * healthIncrease;
+            return (baseHealth + baseHealth * healthIncrease) * healthMultiplier;
         }
     }
 
@@ -36,6 +38,11 @@ public class Health : MonoBehaviour
     public void AddHealthIncrease(float increase)
     {
         healthIncrease += increase;
+    }
+
+    public void MultiplyHealth(float multiplier)
+    {
+        healthMultiplier *= multiplier;
     }
 
     void Die()
