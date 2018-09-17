@@ -11,7 +11,7 @@ public class Leech : MonoBehaviour
     Health health;
     void Start()
     {
-        Damage.OnDamageApplied += LeechLife;
+        Damage.OnAnyDamageApplied += LeechLife;
         health = GetComponent<Health>();
     }
 

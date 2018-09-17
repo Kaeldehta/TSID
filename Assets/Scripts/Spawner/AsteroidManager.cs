@@ -11,7 +11,7 @@ public class AsteroidManager : MonoBehaviour
     private float gapBetweenLayers = 10f;
 
     [SerializeField]
-    private List<GameObject> asteroidPrefabList;
+    private List<GameObject> asteroidPrefabList = new List<GameObject>();
 
     [SerializeField]
     private int numberOfAsteroids = 20;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMovementController : MonoBehaviour
+public class BulletMovementController : MonoBehaviour, IMovementController
 {
     Movement movement;
     

@@ -7,7 +7,7 @@ using UnityEngine;
 public class RandomPlanet : MonoBehaviour
 {
     [SerializeField]
-    private int planetRadius;
+    private int planetRadius = 300;
     [SerializeField]
     private float scale = 5;
 

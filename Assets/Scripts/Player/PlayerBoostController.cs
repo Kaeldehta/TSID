@@ -14,7 +14,7 @@ public class PlayerBoostController : MonoBehaviour
     private float boostSpeed = 1f;
 
     [SerializeField]
-    private float boostAmount;
+    private float boostAmount = 40f;
 
     bool accel = false;
     bool deccel = false;

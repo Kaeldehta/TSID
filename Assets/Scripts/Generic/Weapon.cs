@@ -6,8 +6,9 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    private GameObject projectilePrefab;
+    private GameObject projectilePrefab = null;
 
+    public static event Action<GameObject> OnAnyProjectileShot = delegate { };
     public GameObject Projectile { get; private set; }
 
     Movement movement;
@@ -19,7 +20,7 @@ public class Weapon : MonoBehaviour
     private int projectilesPerShot = 1;
 
     [SerializeField]
-    private Vector2 spawnOffset;
+    private Vector2 spawnOffset = Vector2.zero;
 
     public bool IsShooting { get; set; } = false;
 
@@ -74,9 +75,10 @@ public class Weapon : MonoBehaviour
             spawnedProj.GetComponent<Origin>().OriginGameObject = gameObject;
             spawnedProj.name = gameObject.name + "'s Projectile";
             spawnedProj.SetActive(true);
+            OnAnyProjectileShot(spawnedProj);
+            
         }
         
-
     }
 
     public void ToggleShooting()

@@ -6,7 +6,7 @@ public class ModuleInventory : MonoBehaviour
 {
 
     [SerializeField]
-    private List<GameObject> moduleInventory;
+    private List<GameObject> moduleInventory = new List<GameObject>();
 
     int oldCount;
 

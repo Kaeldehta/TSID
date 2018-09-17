@@ -3,7 +3,7 @@
 public class StarManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject starPrefab;
+    private GameObject starPrefab = null;
 
     [SerializeField]
     private int numberOfStars = 100;

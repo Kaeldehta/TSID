@@ -20,13 +20,13 @@ public class Damage : MonoBehaviour
         }
     }
 
-    public static event Action<GameObject, GameObject, float> OnDamageApplied = delegate { };
+    public static event Action<GameObject, GameObject, float> OnAnyDamageApplied = delegate { };
 
     public void ApplyDamage(GameObject target, float resistance)
     {
         float resistedDamage = RealDamage - RealDamage * resistance;
         float damageDone = Mathf.Abs(target.GetComponent<Health>().ChangeHealthByAmount(-resistedDamage));
-        OnDamageApplied(gameObject, target, damageDone);
+        OnAnyDamageApplied(gameObject, target, damageDone);
     }
 
     public void AddFlatDamage(float amount)

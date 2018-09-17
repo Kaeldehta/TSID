@@ -8,7 +8,7 @@ using UnityEngine;
 public class BulletHitController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject hitParticles;
+    private GameObject hitParticles = null;
 
     void OnCollisionEnter2D(Collision2D col)
     {

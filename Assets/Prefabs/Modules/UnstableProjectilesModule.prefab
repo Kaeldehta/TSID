@@ -1,24 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3342800801065936702 stripped
+--- !u!1 &5479889419949272664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7137527111911214955, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
-  m_PrefabInstance: {fileID: 5578152931994970197}
+  m_PrefabInstance: {fileID: 3387249474485051699}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7226347494781313253
+--- !u!114 &2348835564083996291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3342800801065936702}
+  m_GameObject: {fileID: 5479889419949272664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93cf877e7ce45c64fa7c05e9cf05e313, type: 3}
+  m_Script: {fileID: 11500000, guid: a7f898c9e0e3ebb40b83ed9b659d25c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leechPercentagePerModule: 0.05
---- !u!1001 &5578152931994970197
+  subProjectilesPerModule: 2
+  damageMultiplierPerModule: 0.8
+--- !u!1001 &3387249474485051699
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -71,12 +72,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7137527111911214955, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Name
-      value: NanoLeechModule
+      value: UnstableProjectilesModule
       objectReference: {fileID: 0}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 54a55e3979b98a44aaebb87c3a2c012d, type: 3}
+      objectReference: {fileID: 21300000, guid: 60b6647e933b03140a6cc0fde606f00f, type: 3}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Size.x
       value: 3.2
