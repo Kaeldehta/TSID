@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomingWeaponController : MonoBehaviour
+public class HomingProjectiles : MonoBehaviour
 {
     [SerializeField]
-    private float homingChance = 0.1f;
+    private float homingChance = 0f;
     void Start()
     {
         Weapon.OnAnyProjectileShot += HandleHoming;
@@ -23,5 +23,10 @@ public class HomingWeaponController : MonoBehaviour
                 projectile.AddComponent<HomingMovementController>();
             }
         }
+    }
+
+    public void AddHomingChance(float chance)
+    {
+        homingChance += chance;
     }
 }

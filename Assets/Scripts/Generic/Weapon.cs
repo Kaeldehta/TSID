@@ -51,6 +51,11 @@ public class Weapon : MonoBehaviour
         shootingCountdown -= Time.deltaTime;
     }
 
+    public void AddProjectilesPerShot(int count)
+    {
+        projectilesPerShot += count;
+    }
+
     private void Shoot()
     {
         

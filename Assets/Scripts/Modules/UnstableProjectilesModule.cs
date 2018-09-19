@@ -13,13 +13,13 @@ public class UnstableProjectilesModule : MonoBehaviour, IModule
         target.AddComponent<UnstableProjectiles>();
         target.GetComponent<UnstableProjectiles>().AddSubProjectiles(subProjectilesPerModule);
         target.GetComponent<Weapon>().Projectile.GetComponent<Decay>().DecayRange = 5f;
-        target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
+        //target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
         target.GetComponent<Weapon>().Projectile.transform.Find("UnstableGFX").gameObject.SetActive(true);
     }
 
     public void UpgradeModuleFunctionality(GameObject target)
     {
         target.GetComponent<UnstableProjectiles>().AddSubProjectiles(subProjectilesPerModule);
-        target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
+        //target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
     }
 }

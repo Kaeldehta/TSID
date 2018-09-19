@@ -1,24 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1448152087598204929 stripped
+--- !u!1 &697035349924735934 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7137527111911214955, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
-  m_PrefabInstance: {fileID: 8580845690559137642}
+  m_PrefabInstance: {fileID: 7683645514437846229}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1675524660966702317
+--- !u!114 &8814991651074050124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448152087598204929}
+  m_GameObject: {fileID: 697035349924735934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f72e56d5993e4db437a2be853ac66, type: 3}
+  m_Script: {fileID: 11500000, guid: 05ab1a10f2e77c94eababd3a52372830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flatSpeedPerModule: 5
---- !u!1001 &8580845690559137642
+  homingChancePerModule: 0.03
+--- !u!1001 &7683645514437846229
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -71,27 +71,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7137527111911214955, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Name
-      value: BoosterModule
-      objectReference: {fileID: 0}
-    - target: {fileID: 7030182373808132670, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
-      propertyPath: m_Size.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7030182373808132670, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
-      propertyPath: m_Size.y
-      value: 3
+      value: HomingProjectilesModule
       objectReference: {fileID: 0}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2639a97df1df74046b80e6c6034bb93e, type: 3}
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Size.x
-      value: 3.2
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_Size.y
-      value: 3.2
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8794063445656690588, guid: d7cb35b7ecd2cf942a55a2305d527ad5, type: 3}
       propertyPath: m_WasSpriteAssigned

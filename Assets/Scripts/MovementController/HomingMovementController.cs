@@ -35,4 +35,5 @@ public class HomingMovementController : MonoBehaviour, IMovementController
         
         movement.MoveDirection = transform.up;
     }
+
 }
