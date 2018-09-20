@@ -54,9 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2ed809ed2b2e1469a508c71ac67e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 30
-  speedIncrease: 0
-  speedMultiplier: 1
+  MaxSpeed:
+    baseStat: 0
+    increase: 0
+    multipliers: []
 --- !u!114 &8034157614782742531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayRange: 50
---- !u!114 &8050000432386379205
+--- !u!114 &4075929582958333953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

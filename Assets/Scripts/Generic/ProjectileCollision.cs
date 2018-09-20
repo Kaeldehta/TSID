@@ -13,7 +13,7 @@ public class ProjectileCollision : MonoBehaviour
     {
         GameObject hitObject = collision.gameObject;
 
-        if(gameObject.GetComponent<Origin>().OriginGameObject != hitObject)
+        if(GetComponent<Origin>().OriginTag != hitObject.tag)
         {
             destroyOnCollision = true;
             OnAnyProjectileHit(gameObject, hitObject, collision.GetContact(0).point);

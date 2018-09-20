@@ -83,7 +83,7 @@ public class Weapon : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, newUp);
             GameObject spawnedProj = Instantiate(Projectile, transform.position + transform.up * spawnOffset.y + transform.right * spawnOffset.x, rotation);
             spawnedProj.GetComponent<Movement>().MaxSpeed.AddIncrease(projSpeedChange);
-            spawnedProj.GetComponent<Origin>().OriginGameObject = gameObject;
+            //spawnedProj.GetComponent<Origin>().OriginGameObject = gameObject;
             spawnedProj.name = gameObject.name + "'s Projectile";
             spawnedProj.SetActive(true);
             OnAnyProjectileShot(spawnedProj);

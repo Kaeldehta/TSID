@@ -11,39 +11,39 @@ public class HomingRotationController : MonoBehaviour
     private float homingRadius = 10f;
     [SerializeField]
     private float homingSpeed = 10f;
-    
-    [SerializeField]
-    List<GameObject> blackList;
 
     [SerializeField]
-    List<GameObject> closeRangeEntities;
+    List<GameObject> blackList = new List<GameObject>();
+
+    [SerializeField]
+    List<GameObject> closeRangeEntities = new List<GameObject>();
 
     void Start()
     {
         rotation = GetComponent<Rotation>();
         rotation.SetRotationSpeed(homingSpeed);
-        if(closeRangeEntities == null)
-        {
-            closeRangeEntities = new List<GameObject>();
-        }
-        if(blackList == null)
-        {
-            blackList = new List<GameObject>();
-        }
+        //if (closeRangeEntities == null)
+        //{
+        //    closeRangeEntities = new List<GameObject>();
+        //}
+        //if (blackList == null)
+        //{
+        //    blackList = new List<GameObject>();
+        //}
     }
 
     public void BlackList(GameObject gameObject)
     {
         blackList.Add(gameObject);
     }
-    
-    
+
+
     void UpdateCloseRangeEntities()
     {
         closeRangeEntities.RemoveAll(item => Vector3.Distance(item.transform.position, transform.position) > homingRadius);
         closeRangeEntities.RemoveAll(item => blackList.Contains(item) == true);
 
-        var allEntities = GameObject.FindGameObjectsWithTag("Entity");
+        var allEntities = GameObject.FindGameObjectsWithTag(GetComponent<Origin>().EnemyTag);
         List<GameObject> insideRadius = new List<GameObject>();
         insideRadius.AddRange(allEntities);
 
@@ -53,29 +53,29 @@ public class HomingRotationController : MonoBehaviour
         insideRadius.RemoveAll(item => closeRangeEntities.Contains(item) == true);
 
         closeRangeEntities.AddRange(insideRadius);
-        
+
     }
-    
+
     void Update()
     {
         UpdateCloseRangeEntities();
-        
+
         GameObject closestInRadius = null;
         float mag = Mathf.Infinity;
-        foreach(var enemy in closeRangeEntities)
+        foreach (var enemy in closeRangeEntities)
         {
             float r = Vector3.Distance(enemy.transform.position, transform.position);
-            if ( r < mag)
+            if (r < mag)
             {
                 closestInRadius = enemy;
             }
         }
-        
-        if(closestInRadius != null)
+
+        if (closestInRadius != null)
         {
             rotation.SetNewRotation(Quaternion.LookRotation(Vector3.forward, closestInRadius.transform.position - transform.position));
         }
-        
+
     }
 
 }

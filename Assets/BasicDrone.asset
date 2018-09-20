@@ -15,6 +15,6 @@ MonoBehaviour:
   baseHealth: 50
   baseSpeed: 20
   baseShotsPerSecond: 1
-  baseProjectilesPerShot: 1
+  baseProjectilesPerShot: 3
   baseProjectileSpeed: 30
   baseDamage: 5
