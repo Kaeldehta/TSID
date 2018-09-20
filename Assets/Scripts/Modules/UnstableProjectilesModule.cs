@@ -6,12 +6,10 @@ public class UnstableProjectilesModule : MonoBehaviour, IModule
 {
     [SerializeField]
     private int subProjectilesPerModule = 2;
-    [SerializeField]
-    private float damageMultiplierPerModule = 0.8f;
     public void AddModuleFunctionality(GameObject target)
     {
-        target.AddComponent<UnstableProjectiles>();
-        target.GetComponent<UnstableProjectiles>().AddSubProjectiles(subProjectilesPerModule);
+        target.GetComponent<Weapon>().Projectile.AddComponent<UnstableProjectile>();
+        target.GetComponent<Weapon>().Projectile.GetComponent<UnstableProjectile>().AddSubProjectiles(subProjectilesPerModule);
         target.GetComponent<Weapon>().Projectile.GetComponent<Decay>().DecayRange = 5f;
         //target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
         target.GetComponent<Weapon>().Projectile.transform.Find("UnstableGFX").gameObject.SetActive(true);
@@ -19,7 +17,7 @@ public class UnstableProjectilesModule : MonoBehaviour, IModule
 
     public void UpgradeModuleFunctionality(GameObject target)
     {
-        target.GetComponent<UnstableProjectiles>().AddSubProjectiles(subProjectilesPerModule);
+        target.GetComponent<Weapon>().Projectile.GetComponent<UnstableProjectile>().AddSubProjectiles(subProjectilesPerModule);
         //target.GetComponent<Weapon>().Projectile.GetComponent<Damage>().MultiplyDamage(damageMultiplierPerModule);
     }
 }

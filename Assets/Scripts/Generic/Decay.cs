@@ -21,20 +21,24 @@ public class Decay : MonoBehaviour
         }
     }
 
-    Vector3 startPos;
+    Vector3 oldPos;
+    float counter;
 
     void Start()
     {
-        startPos = transform.position;
+        oldPos = transform.position;
+        counter = 0;
     }
 
     void Update()
     {
-        if ((transform.position - startPos).magnitude > decayRange)
+        if (counter > decayRange)
         {
             gameObject.SetActive(false);
             OnAnyDecayed(gameObject);
             Destroy(gameObject, 1);
         }
+        counter += (transform.position - oldPos).magnitude;
+        oldPos = transform.position;
     }
 }

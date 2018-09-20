@@ -18,7 +18,7 @@ public class HealthRegen : MonoBehaviour
 
     void Update()
     {
-        float regenAmount = health.MaxHealth * percentRegenPerSec * Time.deltaTime;
+        float regenAmount = health.MaxHealth.StatValue * percentRegenPerSec * Time.deltaTime;
         health.ChangeHealthByAmount(regenAmount);
     }
     

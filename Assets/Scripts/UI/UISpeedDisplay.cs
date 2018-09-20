@@ -16,6 +16,6 @@ public class UISpeedDisplay : MonoBehaviour
 
     void Update()
     {
-        text.text = movement.MaxSpeed.ToString();
+        text.text = movement.MaxSpeed.StatValue.ToString();
     }
 }

@@ -4,28 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField]
-    private float baseSpeed = 10f;
-    [SerializeField]
-    private float speedIncrease = 0f;
-    [SerializeField]
-    private float speedMultiplier = 1f;
+    public Stat MaxSpeed;
 
     public Vector3 MoveDirection { get; set; }
-
-    public float MaxSpeed
-    {
-        get
-        {
-            return (baseSpeed + baseSpeed * speedIncrease) * speedMultiplier;
-        }
-    }
-
+    
     public float CurrentSpeed
     {
         get
         {
-            return (MoveDirection * MaxSpeed).magnitude;
+            return (MoveDirection * MaxSpeed.StatValue).magnitude;
         }
     }
 
@@ -36,22 +23,8 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        transform.position += MoveDirection * Time.deltaTime * MaxSpeed;
+        transform.position += MoveDirection * Time.deltaTime * MaxSpeed.StatValue;
     }
-
-    public void AddFlatSpeed(float amount)
-    {
-        baseSpeed += amount;
-    }
-
-    public void AddSpeedIncrease(float increase)
-    {
-        speedIncrease += increase;
-    }
-    public void MultiplySpeed(float multiplier)
-    {
-        speedMultiplier *= multiplier;
-    }
-
+    
 
 }

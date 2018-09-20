@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!4 &1899426200241542169 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8157696202980939148, guid: eeb9b1d453bc16743b1083c2902b5e25, type: 3}
-  m_PrefabInstance: {fileID: 7739976272600416661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2773716628088307650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8157696202980939148, guid: eeb9b1d453bc16743b1083c2902b5e25, type: 3}
   m_PrefabInstance: {fileID: 6290347711488551502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1899426200241542169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8157696202980939148, guid: eeb9b1d453bc16743b1083c2902b5e25, type: 3}
+  m_PrefabInstance: {fileID: 7739976272600416661}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2404977582619970762 stripped
 Transform:
@@ -26,8 +26,9 @@ GameObject:
   - component: {fileID: 6238469501859576640}
   - component: {fileID: 7160033696526631862}
   - component: {fileID: 8416120569309642033}
+  - component: {fileID: 7101708843020074246}
   m_Layer: 10
-  m_Name: StandardProjectile
+  m_Name: ProjectileTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,9 +63,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1d77844cc46ee47847f72835e97b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
-  damageIncrease: 0
-  damageMultiplier: 1
+  RealDamage:
+    baseStat: 0
+    increase: 0
+    multipliers: []
 --- !u!114 &8416120569309642033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +80,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originGameObject: {fileID: 0}
+--- !u!114 &7101708843020074246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4599342600093971884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f689bd291859241b7b98fbe5907bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5788751866991745350
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,11 +9,11 @@ public class BoosterModule : MonoBehaviour, IModule
 
     public void AddModuleFunctionality(GameObject target)
     {
-        target.GetComponent<Movement>().AddFlatSpeed(flatSpeedPerModule);
+        target.GetComponent<Movement>().MaxSpeed.AddFlat(flatSpeedPerModule);
     }
 
     public void UpgradeModuleFunctionality(GameObject target)
     {
-        target.GetComponent<Movement>().AddFlatSpeed(flatSpeedPerModule);
+        target.GetComponent<Movement>().MaxSpeed.AddFlat(flatSpeedPerModule);
     }
 }

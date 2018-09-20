@@ -17,7 +17,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ab1a10f2e77c94eababd3a52372830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homingChancePerModule: 0.03
+  homingChancePerModule: 0.1
 --- !u!1001 &7683645514437846229
 PrefabInstance:
   m_ObjectHideFlags: 0

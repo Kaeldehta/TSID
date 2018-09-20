@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Damage))]
-public class BulletHitController : MonoBehaviour
+public class BulletHitManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject hitParticles = null;
 
-    void OnCollisionEnter2D(Collision2D col)
+    private void Start()
     {
-        GameObject hitObject = col.gameObject;
-        
-        if (GetComponent<Origin>().OriginGameObject != hitObject)
-        {
+        ProjectileCollision.OnAnyProjectileHit += HandleBulletCollision;
+    }
 
-            gameObject.SetActive(false);
-            Vector3 hitPoint = col.GetContact(0).point;
-            GameObject particle = Instantiate(hitParticles, hitPoint - Vector3.forward, Quaternion.identity);
+    private void HandleBulletCollision(GameObject projectile, GameObject hitObject, Vector2 collisionPoint)
+    {
+        if(projectile.tag == "Bullet")
+        {
+            GameObject particle = Instantiate(hitParticles, (Vector3)collisionPoint - Vector3.forward, Quaternion.identity);
 
             Color color = GetMostUsedColor(hitObject.GetComponentInChildren<SpriteRenderer>().sprite.texture);
 
@@ -33,15 +32,13 @@ public class BulletHitController : MonoBehaviour
                 {
                     resistance = hitObject.GetComponent<BulletResistance>().GetBulletResistance();
                 }
-                GetComponent<Damage>().ApplyDamage(hitObject, resistance);
+                projectile.GetComponent<Damage>().ApplyDamage(hitObject, resistance);
 
             }
-
-            Destroy(gameObject, 1);
         }
-
+        
     }
-
+    
     Color GetMostUsedColor(Texture2D tex)
     {
         Color[] colors = tex.GetPixels();

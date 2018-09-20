@@ -5,42 +5,15 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField]
-    private float baseDamage = 5f;
-    [SerializeField]
-    private float damageIncrease = 0f;
-    [SerializeField]
-    private float damageMultiplier = 1f;
-
-    public float RealDamage
-    {
-        get
-        {
-            return (baseDamage + baseDamage * damageIncrease) * damageMultiplier;
-        }
-    }
-
+    public Stat RealDamage;
+    
     public static event Action<GameObject, GameObject, float> OnAnyDamageApplied = delegate { };
 
     public void ApplyDamage(GameObject target, float resistance)
     {
-        float resistedDamage = RealDamage - RealDamage * resistance;
+        float resistedDamage = RealDamage.StatValue - RealDamage.StatValue * resistance;
         float damageDone = Mathf.Abs(target.GetComponent<Health>().ChangeHealthByAmount(-resistedDamage));
         OnAnyDamageApplied(gameObject, target, damageDone);
     }
-
-    public void AddFlatDamage(float amount)
-    {
-        baseDamage += amount;
-    }
-
-    public void AddDamageIncrease(float increase)
-    {
-        damageIncrease += increase;
-    }
-
-    public void MultiplyDamage(float multiplier)
-    {
-        damageMultiplier *= multiplier;
-    }
+    
 }

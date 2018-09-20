@@ -50,13 +50,13 @@ public class PlayerBoostController : MonoBehaviour
             float change = Time.deltaTime * boostSpeed;
             if (speedChangeAccel + change < boostAmount)
             {
-                movement.AddFlatSpeed(change);
+                movement.MaxSpeed.AddFlat(change);
                 speedChangeAccel += change;
                 speedChangeDeccel -= change;
             }
             else if (speedChangeAccel + change >= boostAmount)
             {
-                movement.AddFlatSpeed(speedChangeDeccel);
+                movement.MaxSpeed.AddFlat(speedChangeDeccel);
                 speedChangeAccel = boostAmount;
                 speedChangeDeccel = 0;
                 accel = false;
@@ -68,13 +68,13 @@ public class PlayerBoostController : MonoBehaviour
             float change = Time.deltaTime * boostSpeed;
             if (speedChangeDeccel + change < boostAmount)
             {
-                movement.AddFlatSpeed(-change);
+                movement.MaxSpeed.AddFlat(-change);
                 speedChangeAccel -= change;
                 speedChangeDeccel += change;
             }
             else if (speedChangeDeccel + change >= boostAmount)
             {
-                movement.AddFlatSpeed(-speedChangeAccel);
+                movement.MaxSpeed.AddFlat(-speedChangeAccel);
                 speedChangeAccel = 0;
                 speedChangeDeccel = boostAmount;
                 accel = false;

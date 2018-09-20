@@ -7,11 +7,11 @@ public class HealthPackModule : MonoBehaviour, IModule
 
     public void AddModuleFunctionality(GameObject target)
     {
-        target.GetComponent<Health>().AddFlatHealth(flatHealthPerModule);
+        target.GetComponent<Health>().MaxHealth.AddFlat(flatHealthPerModule);
     }
 
     public void UpgradeModuleFunctionality(GameObject target)
     {
-        target.GetComponent<Health>().AddFlatHealth(flatHealthPerModule);
+        target.GetComponent<Health>().MaxHealth.AddFlat(flatHealthPerModule);
     }
 }

@@ -16,6 +16,6 @@ public class UIDPPDisplay : MonoBehaviour
 
     void Update()
     {
-        text.text = weapon.Projectile.GetComponent<Damage>().RealDamage.ToString();
+        text.text = weapon.Projectile.GetComponent<Damage>().RealDamage.StatValue.ToString();
     }
 }

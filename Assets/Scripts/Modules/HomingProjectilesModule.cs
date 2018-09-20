@@ -9,12 +9,12 @@ public class HomingProjectilesModule : MonoBehaviour, IModule
 
     public void AddModuleFunctionality(GameObject target)
     {
-        target.AddComponent<HomingProjectiles>();
-        target.GetComponent<HomingProjectiles>().AddHomingChance(homingChancePerModule);
+        target.GetComponent<Weapon>().Projectile.AddComponent<HomingProjectile>();
+        target.GetComponent<Weapon>().Projectile.GetComponent<HomingProjectile>().AddHomingChance(homingChancePerModule);
     }
 
     public void UpgradeModuleFunctionality(GameObject target)
     {
-        target.GetComponent<HomingProjectiles>().AddHomingChance(homingChancePerModule);
+        target.GetComponent<Weapon>().Projectile.GetComponent<HomingProjectile>().AddHomingChance(homingChancePerModule);
     }
 }

@@ -11,7 +11,7 @@ public class Rotation : MonoBehaviour
 
     void Start()
     {
-        newRotation = Quaternion.identity;
+        newRotation = transform.rotation;
         
     }
     
@@ -23,5 +23,10 @@ public class Rotation : MonoBehaviour
     public void SetNewRotation(Quaternion rotation)
     {
         newRotation = rotation;
+    }
+
+    public void SetRotationSpeed(float speed)
+    {
+        rotationSpeed = speed;
     }
 }

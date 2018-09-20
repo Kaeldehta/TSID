@@ -15,6 +15,6 @@ public class UIHealthDisplay : MonoBehaviour
     
     void Update()
     {
-        text.text = Mathf.RoundToInt(health.CurrentHealth).ToString() + "/" + health.MaxHealth.ToString();
+        text.text = Mathf.RoundToInt(health.CurrentHealth).ToString() + "/" + health.MaxHealth.StatValue.ToString();
     }
 }
