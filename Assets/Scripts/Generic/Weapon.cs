@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
 
     float shootingCountdown;
 
-    private float angleSpread = 30;
+    private float angleSpread = 5;
 
     void Start()
     {

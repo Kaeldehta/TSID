@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 100
   baseSpeed: 30
-  baseShotsPerSecond: 3
-  baseProjectilesPerShot: 3
+  baseShotsPerSecond: 10
+  baseProjectilesPerShot: 5
   baseProjectileSpeed: 40
   baseDamage: 5
