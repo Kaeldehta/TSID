@@ -683,7 +683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &435399597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1986,9 +1986,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23482bbaab3c33840abdae659849c7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfLayers: 4
-  maxNumberOfDungeonsPerLayer: 5
+  minMainPathLength: 5
+  maxMainPathLength: 10
   dungeonIcon: {fileID: 7425457846130690804, guid: 482d30a710e1bd5459bdeba1997a3bdc, type: 3}
+  possibleIcon: {fileID: 3183243648165384868, guid: 7a0dab34469fea542bffd3ea36dd1262, type: 3}
 --- !u!1001 &1216234770
 PrefabInstance:
   m_ObjectHideFlags: 0

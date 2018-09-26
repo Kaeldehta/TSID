@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,18 +6,45 @@ using UnityEngine.UI;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private int numberOfLayers = 1;
     [SerializeField]
-    private int maxNumberOfDungeonsPerLayer = 3;
+    private int maxNumberOfDungeonsPerLayer = 3;*/
+
+    [SerializeField]
+    private int minMainPathLength = 5;
+    [SerializeField]
+    private int maxMainPathLength = 10;
+
     [SerializeField]
     private GameObject dungeonIcon;
+    [SerializeField]
+    private GameObject possibleIcon;
 
-    private List<LevelLayer> layers = new List<LevelLayer>();
-    private List<SpaceDungeonConnection> connections = new List<SpaceDungeonConnection>();
+    //private List<LevelLayer> layers = new List<LevelLayer>();
 
     private void Start()
     {
+        int mainPathLength = Random.Range(minMainPathLength, maxMainPathLength + 1);
+        Debug.Log("Spawning " + mainPathLength + " Dungeons.");
+
+        LevelMap lm = new LevelMap(mainPathLength);
+
+        var dungeonPos = lm.DungeonVectors;
+        var bPos = lm.PossibleBranchSpawnPoints();
+
+        foreach(var d in dungeonPos)
+        {
+            Debug.Log("Dungeon: " + d.x + " " + d.y);
+            var newPos = new Vector2(d.x * 5, d.y * 5);
+            Instantiate(dungeonIcon, newPos, Quaternion.identity, transform);
+        }
+        foreach(var p in bPos)
+        {
+            var newPos = new Vector2(p.layer * 5, p.spot * 5);
+            Instantiate(possibleIcon, newPos, Quaternion.identity, transform);
+        }
+        /*
         LevelLayer first = new LevelLayer(maxNumberOfDungeonsPerLayer, 1);
         layers.Add(first);
         for (int i = 0; i < numberOfLayers; i++)
@@ -43,11 +69,11 @@ public class LevelGenerator : MonoBehaviour
             Debug.Log("Error");
         }
 
+        */
 
-
-        DrawLevelMap();
+        //DrawLevelMap();
     }
-
+    /*
     void DrawLevelMap()
     {
         for (int x = 0; x < layers.Count; x++)
@@ -78,7 +104,7 @@ public class LevelGenerator : MonoBehaviour
                     d1 = new Vector2(x * 5, y1 * 3);
                     break;
                 }
-                
+
             }
 
             for (int x = 0; x < layers.Count; x++)
@@ -89,16 +115,13 @@ public class LevelGenerator : MonoBehaviour
                     d2 = new Vector2(x * 5, y2 * 3);
                     break;
                 }
-                
+
             }
 
 
-            
-
             Debug.DrawRay(d1, d2 - d1, Color.red, 10);
         }
-
-
-    }
+        */
 
 }
+
