@@ -22,14 +22,6 @@ public class HomingRotationController : MonoBehaviour
     {
         rotation = GetComponent<Rotation>();
         rotation.SetRotationSpeed(homingSpeed);
-        //if (closeRangeEntities == null)
-        //{
-        //    closeRangeEntities = new List<GameObject>();
-        //}
-        //if (blackList == null)
-        //{
-        //    blackList = new List<GameObject>();
-        //}
     }
 
     public void BlackList(GameObject gameObject)
@@ -40,17 +32,18 @@ public class HomingRotationController : MonoBehaviour
 
     void UpdateCloseRangeEntities()
     {
+        closeRangeEntities.RemoveAll(item => item == null);
         closeRangeEntities.RemoveAll(item => Vector3.Distance(item.transform.position, transform.position) > homingRadius);
-        closeRangeEntities.RemoveAll(item => blackList.Contains(item) == true);
+        closeRangeEntities.RemoveAll(item => blackList.Contains(item));
 
         var allEntities = GameObject.FindGameObjectsWithTag(GetComponent<Origin>().EnemyTag);
         List<GameObject> insideRadius = new List<GameObject>();
         insideRadius.AddRange(allEntities);
 
 
-        insideRadius.RemoveAll(item => blackList.Contains(item) == true);
+        insideRadius.RemoveAll(item => blackList.Contains(item));
         insideRadius.RemoveAll(item => Vector3.Distance(item.transform.position, transform.position) > homingRadius);
-        insideRadius.RemoveAll(item => closeRangeEntities.Contains(item) == true);
+        insideRadius.RemoveAll(item => closeRangeEntities.Contains(item));
 
         closeRangeEntities.AddRange(insideRadius);
 

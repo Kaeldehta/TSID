@@ -4,209 +4,121 @@ using UnityEngine;
 
 public class LevelMap
 {
-    private List<List<SpaceDungeon>> dungeons = new List<List<SpaceDungeon>>();
+    private List<SpaceDungeon> dungeons = new List<SpaceDungeon>();
     private List<SpaceDungeonConnection> connections = new List<SpaceDungeonConnection>();
 
-    private List<Position> mainPath = new List<Position>();
+    public List<SpaceDungeon> Dungeons { get => dungeons; }
+    public List<SpaceDungeonConnection> Connections { get => connections; }
 
-    public struct Position
-    {
-        public int layer;
-        public int spot;
-
-        public Position(List<List<SpaceDungeon>> _map, List<SpaceDungeon> _layer, SpaceDungeon _dungeon)
-        {
-            layer = _map.IndexOf(_layer);
-            spot = _layer.IndexOf(_dungeon);
-        }
-
-        public Position(int _layer, int _spot)
-        {
-            layer = _layer;
-            spot = _spot;
-        }
-
-    }
-
-    public List<Vector2> DungeonVectors
-    {
-        get
-        {
-            List<Vector2> list = new List<Vector2>();
-            for (int x = 0; x < dungeons.Count; x++)
-            {
-                for (int y = 0; y < dungeons[x].Count; y++)
-                {
-                    if (dungeons[x][y] != null)
-                    {
-                        list.Add(new Vector2(x, y));
-                    }
-                }
-            }
-            return list;
-        }
-    }
-    
     public LevelMap(int mainPathLength)
     {
-        int spawnedDungeonCount = 0;
-        List<SpaceDungeon> firstLayer = new List<SpaceDungeon>();
-        SpaceDungeon firstDungeon = new SpaceDungeon();
-        firstLayer.Add(firstDungeon);
-        dungeons.Add(firstLayer);
+        SpaceDungeon firstDungeon = new SpaceDungeon(0, 0, true, false);
+        dungeons.Add(firstDungeon);
 
-        Position lastDungeonPosition = new Position(dungeons, firstLayer, firstDungeon);
-
-        while (spawnedDungeonCount < mainPathLength)
+        for (int i = 0; i < mainPathLength; i++)
         {
             int direction = Random.Range(-1, 2);
-            Debug.Log("Next Dungeon: " + direction);
-            List<SpaceDungeon> nextLayer = new List<SpaceDungeon>();
 
-            if (direction == -1 && lastDungeonPosition.spot == 0)
-            {
-                for (int i = 0; i < lastDungeonPosition.layer + 1; i++)
-                {
-                    dungeons[i].Insert(0, null);
-                }
-                lastDungeonPosition.spot++;
-            }
+            bool canBranch = i != (mainPathLength - 1);
 
-            for (int i = 0; i < lastDungeonPosition.spot + direction; i++)
-            {
-                nextLayer.Add(null);
-            }
-
-            var d = new SpaceDungeon();
-
-            nextLayer.Add(d);
-            dungeons.Add(nextLayer);
-
-            var c = d + dungeons[lastDungeonPosition.layer][lastDungeonPosition.spot];
-            connections.Add(c);
-
-            lastDungeonPosition = new Position(dungeons, nextLayer, d);
-
-            spawnedDungeonCount++;
+            SpaceDungeon dungeon = new SpaceDungeon(i + 1, dungeons[i].MapPosition.y + direction, true, canBranch);
+            dungeons.Add(dungeon);
+            connections.Add(dungeons[i] + dungeon);
         }
-
-        for (int x = 0; x < dungeons.Count; x++)
-        {
-            for (int y = 0; y < dungeons[x].Count; y++)
-            {
-                if (dungeons[x][y] != null)
-                {
-                    mainPath.Add(new Position(x, y));
-                }
-            }
-        }
-
 
     }
 
-    public List<Position> PossibleBranchSpawnPoints()
+    public Dictionary<SpaceDungeon, List<Vector2Int>> PossibleBranchSpawnPoints()
     {
-        List<Position> possible = new List<Position>();
-        foreach (var p in mainPath)
+        Dictionary<SpaceDungeon, List<Vector2Int>> possible = new Dictionary<SpaceDungeon, List<Vector2Int>>();
+        foreach (var dungeon in dungeons)
         {
-            Debug.Log(p.layer + " " + p.spot);
-            if(p.layer == 0 || p.layer == dungeons.Count - 1)
-            {
-                continue;
-            }
+            List<Vector2Int> possibleForThisPath = new List<Vector2Int>();
+
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
                 {
-                    if (j == 0 && i == 0)
+                    Vector2Int newPos = new Vector2Int(dungeon.MapPosition.x + i, dungeon.MapPosition.y + j);
+                    if (!dungeons.Exists(item => item.MapPosition == newPos))
                     {
-                        continue;
+                        possibleForThisPath.Add(newPos);
                     }
-                    if (!possible.Exists(item => item.layer == p.layer + i && item.spot == p.spot + j) && !mainPath.Exists(item => item.layer == p.layer + i && item.spot == p.spot + j))
+                    else
                     {
-                        possible.Add(new Position(p.layer + i, p.spot + j));
+                        Debug.Log("Already in dungeons.");
                     }
                 }
             }
+
+            possible.Add(dungeon, possibleForThisPath);
 
         }
 
         return possible;
     }
 
-    public void AddBranches()
+    public void DrawConnections()
     {
-        List<Position> possibleDirections = PossibleBranchSpawnPoints();
-        possibleDirections.ForEach(item => Debug.Log(item.layer + " " + item.spot));
+        Debug.Log(connections.Count);
+        foreach (var c in connections)
+        {
+            Vector2Int d1 = c.FirstDungeon.MapPosition;
+            Vector2Int d2 = c.SecondDungeon.MapPosition;
+
+            Vector3 realPosD1 = new Vector3(d1.x * 5, d1.y * 5, 0);
+            Vector3 realPosD2 = new Vector3(d2.x * 5, d2.y * 5, 0);
+
+            Debug.DrawRay(realPosD1, realPosD2 - realPosD1, Color.red, 20);
+        }
     }
 
+    public void AddBranches(int branchCount)
+    {
+        List<SpaceDungeon> hasBranch = new List<SpaceDungeon>();
+        for (int i = 0; i < branchCount; i++)
+        {
+            Dictionary<SpaceDungeon, List<Vector2Int>> possibleRootsOrig = PossibleBranchSpawnPoints();
+            Dictionary<SpaceDungeon, List<Vector2Int>> possibleRoots = PossibleBranchSpawnPoints();
+            foreach (var key in possibleRootsOrig.Keys)
+            {
+                if (!key.IsOnMainPath || !key.CanBranch)
+                {
+                    possibleRoots.Remove(key);
+                }
 
+            }
 
-    //private List<SpaceDungeon> dungeons = new List<SpaceDungeon>();
+            foreach (var b in hasBranch)
+            {
+                if (possibleRoots.ContainsKey(b))
+                    possibleRoots.Remove(b);
+            }
 
-    //public List<SpaceDungeon> Dungeons
-    //{
-    //    get
-    //    {
-    //        return dungeons;
-    //    }
-    //}
+            int randomRootIndex = Random.Range(0, possibleRoots.Keys.Count);
 
+            SpaceDungeon[] keyArray = new SpaceDungeon[possibleRoots.Keys.Count];
 
-    //public LevelLayer(int maxNumberOfDungeons, int numberOfDungeons)
-    //{
-    //    for (int i = 0; i < maxNumberOfDungeons; i++)
-    //    {
-    //        dungeons.Add(null);
-    //    }
-    //    int addedDungeons = 0;
-    //    while (addedDungeons < numberOfDungeons)
-    //    {
-    //        int posInLayer = Random.Range(0, maxNumberOfDungeons);
-    //        if (dungeons[posInLayer] == null)
-    //        {
-    //            dungeons[posInLayer] = new SpaceDungeon();
-    //            addedDungeons++;
-    //        }
-    //    }
+            possibleRoots.Keys.CopyTo(keyArray, 0);
 
-    //}
+            SpaceDungeon root = keyArray[randomRootIndex];
+            hasBranch.Add(root);
 
+            List<Vector2Int> possibleBranches = possibleRoots[root];
 
-    //public static List<SpaceDungeonConnection> operator +(LevelLayer l1, LevelLayer l2)
-    //{
-    //    List<SpaceDungeonConnection> connections = new List<SpaceDungeonConnection>();
+            int randomBranchIndex = Random.Range(0, possibleBranches.Count);
 
-    //    foreach (var d in l1.dungeons)
-    //    {
-    //        if (d != null && !d.HasConnection(connections))
-    //        {
-    //            List<SpaceDungeon> possibleConnectionPartners = new List<SpaceDungeon>();
+            Vector2Int branch = possibleBranches[randomBranchIndex];
 
-    //            foreach(var cP in l2.dungeons)
-    //            {
-    //                if (cP != null)
-    //                    possibleConnectionPartners.Add(cP);
-    //            }
-    //            Debug.Log(Random.seed);
-    //            int howManyConnections = Random.Range(1, 3);
-    //            int connectionsCreated = 0;
-    //            while (connectionsCreated < howManyConnections)
-    //            {
-    //                int randomCPartner = Random.Range(0, possibleConnectionPartners.Count);
-    //                var c = d + possibleConnectionPartners[randomCPartner];
-    //                if (!c.DoesAlreadyExist(connections))
-    //                {
-    //                    connections.Add(c);
-    //                    connectionsCreated++;
-    //                    possibleConnectionPartners.Remove(possibleConnectionPartners[randomCPartner]);
-    //                }
-    //            }
+            SpaceDungeon branchDungeon = new SpaceDungeon(branch.x, branch.y, false, true);
+            dungeons.Add(branchDungeon);
 
-    //        }
-    //    }
+            connections.Add(root + branchDungeon);
 
-    //    return connections;
-    //}
+        }
 
+    }
+
+    
 }
+

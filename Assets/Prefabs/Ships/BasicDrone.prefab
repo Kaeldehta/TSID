@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c871c7489dc7249bdbd059c5a0d3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4251375034131825302, guid: 69b554427b7755a49b443059a568d294, type: 3}
+  projectilePrefab: {fileID: 5865252870000363026, guid: 9a3aece60d3a2c342b890aa174a9743d, type: 3}
   ShotsPerSecond:
     baseStat: 0
     increase: 0
