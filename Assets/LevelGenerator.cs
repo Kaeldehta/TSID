@@ -23,8 +23,6 @@ public class LevelGenerator : MonoBehaviour
         Level = new LevelMap(7);
 
         Level.AddBranches(5);
-
-        Level.DrawConnections();
     }
 
 }

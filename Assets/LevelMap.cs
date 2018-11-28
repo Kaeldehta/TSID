@@ -44,10 +44,6 @@ public class LevelMap
                     {
                         possibleForThisPath.Add(newPos);
                     }
-                    else
-                    {
-                        Debug.Log("Already in dungeons.");
-                    }
                 }
             }
 
@@ -56,21 +52,6 @@ public class LevelMap
         }
 
         return possible;
-    }
-
-    public void DrawConnections()
-    {
-        Debug.Log(connections.Count);
-        foreach (var c in connections)
-        {
-            Vector2Int d1 = c.FirstDungeon.MapPosition;
-            Vector2Int d2 = c.SecondDungeon.MapPosition;
-
-            Vector3 realPosD1 = new Vector3(d1.x * 5, d1.y * 5, 0);
-            Vector3 realPosD2 = new Vector3(d2.x * 5, d2.y * 5, 0);
-
-            Debug.DrawRay(realPosD1, realPosD2 - realPosD1, Color.red, 20);
-        }
     }
 
     public void AddBranches(int branchCount)
@@ -119,6 +100,6 @@ public class LevelMap
 
     }
 
-    
+
 }
 
